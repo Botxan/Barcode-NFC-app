@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product control</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon" sizes="16x16">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="icon/fontawesome-5.8.2/css/all.min.css">
+    
+    <!-- Bootstrap 4.3.1 CSS -->
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap-4.3.1/css/bootstrap.min.css">
+
+    <!-- MDBootstrap -->
+    <link rel="stylesheet" type="text/css" href="lib/MDBootstrap/css/mdb.min.css">
+
+    <!-- MDBootstrap Datatables -->
+    <link rel="stylesheet" type="text/css" href="lib/MDBootstrap/css/addons/datatables.min.css">
+
+    <!-- Own CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+	<div id="main" class="container">
+		<br>
+		<div class="row justify-content-md-center">		
+			<div id="controlTableDiv" class="col-sm-5 z-depth-1">
+				<input id="barcodeInput" type="text" name="barcode">
+				<div class="container">
+					<div id="takeOrLeave" class="row" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Select a button before start scanning">
+						<button id="Leave" class="btn btn-primary col-sm takeOrLeave" onclick="selectButton(this.id)"><i class="fas fa-arrow-down"> </i> Leave</button>
+						<button id="Take" class="btn btn-primary col-sm takeOrLeave" onclick="selectButton(this.id)"><i class="fas fa-arrow-up"> </i> Take</button>
+					</div>
+				</div>
+				<!-- Vertical Steppers -->
+				<div id="stepperLeft" class="row mt-1">
+		  			<div id="stepperLeftChild" class="col-md-12">
+
+			    		<!-- Stepers Wrapper -->
+			    		<ul class="stepper stepper-vertical">
+
+					      	<!-- First Step -->
+					    	<li class="completed">
+			        			<a href="#!">
+			          				<span class="circle">1</span>
+			          				<span class="label">Scan the products</span>
+			        			</a>
+			      			</li>
+
+			      			<!-- Second Step -->
+			      			<li class="active">
+
+			        			<!--Section Title -->
+			        			<a href="#!">
+			          				<span class="circle">2</span>
+			          				<span class="label">Submit</span>
+			        			</a>
+
+			      			</li>
+
+			      			<!-- Third Step -->
+			      			<li class="active">
+			        			<a href="#!">
+			          				<span class="circle">3</span>
+			          				<span class="label">Identify yourself</span>
+			        			</a>
+			      			</li>
+
+			    		</ul>
+			    		<!-- /.Stepers Wrapper -->
+
+		  			</div>
+				</div>
+				<!-- /.Vertical Steppers -->
+
+			</div>
+
+
+			<div id="steps" class="col-sm-6 ml-1 z-depth-1">
+				<div id="slideDownParentDiv">
+
+					<table id="controlTable" class="table table-stripped">
+						<thead class="thead-dark">
+							<tr>
+								<th></th>
+								<th>ID</th>
+								<th>CODE</th>
+								<th>NAME</th>
+								<th>PCS</th>
+								<th>ACTION</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+
+					<!-- Vertical Steppers -->
+					<div class="row">
+						<div class="col-md-12">
+
+					    	<!-- Stepers Wrapper -->
+					    	<ul class="stepper stepper-vertical">
+
+						      	<!-- First Step -->
+						      	<li class="active">
+						        	<a href="#!">
+						          		<span class="circle">1</span>
+						          		<span class="label">Scan the products</span>
+						        	</a>
+
+						        	<div class="step-content grey lighten-3">
+						          		<p>Choose if you are taking or leaving the product by clicking the buttons. Then scan the products.</p>
+						        	</div>
+						     	</li>
+
+						      	<!-- Second Step -->
+						      	<li class="active">
+
+						        	<a href="#!">
+						          		<span class="circle">2</span>
+						          		<span class="label">Submit</span>
+						        	</a>
+
+						        	<div class="step-content grey lighten-3">
+						          		<p>Once you have scanned all products, click on  the button below to submit the products.</p>
+						        	</div>
+						      	</li>
+
+						      	<!-- Third Step -->
+						      	<li class="active">
+						        	<a href="#!">
+						          		<span class="circle">3</span>
+						          		<span class="label">A pop-up will ask you to identify yourself</span>
+						        	</a>
+
+						        	<div class="step-content grey lighten-3">
+						          		<p class="">Identify yourself with your NFC card.</p>
+						        	</div>
+						      	</li>
+
+					    	</ul>
+					    	<!-- /.Stepers Wrapper -->
+
+					  	</div>
+					</div>
+
+					<!-- Modal for unregistered barcodes -->
+					<div class="modal fade" id="unregisteredBarcodeModal" tabindex="-1" role="dialog" aria-labelledby="unregisteredBarcodeModalLabel" aria-hidden="true">
+					  	<div class="modal-dialog" role="document">
+					    	<div class="modal-content">
+					      		<div class="modal-header">
+					        		<h5 class="modal-title">Error: unregistered barcode</h5>
+					        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          			<span aria-hidden="true">&times;</span>
+					        		</button>
+					      		</div>
+					      		<div class="modal-body">
+					        		<p id="unregisteredBarcodeP">The <span>scanned</span> barcode is not registered in the database.</p>
+					        		<br>
+					        		<p>If you think that the product should be registered, please contact with an administrator.</p>
+					      		</div>
+					      		<div class="modal-footer">
+					        		<button type="button" class="btn btn-success" data-dismiss="modal">Continue scanning</button>
+					      		</div>
+					    	</div>
+					  </div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<button id="submit" class="btn btn-success" data-toggle="modal" data-target="#identificationModal">Submit</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="identificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		  	<div class="modal-dialog modal-dialog-centered" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<h5 class="modal-title">Identify yourself</h5>
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          			<span aria-hidden="true">&times;</span>
+		        		</button>
+		      		</div>
+		      		<div class="modal-body">
+		       			<p>Pass your NFC card through the NFC reader to finish the operation.</p>
+		       			<div id="identificationModalHelpImgDiv">
+		       				<img id="identificationModalHelpImg" src="img/nfcCardAndReader.png">
+		       			</div>
+		       			<input id="identificationInput" type="text">
+		       			<div id="identificationResult" class="text-center"></div>
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-secondary" data-dismiss="modal">Keep scanning</button>
+		        		<button type="button" class="btn btn-primary" onclick="location.reload()"">Cancel operation</button>
+		      		</div>
+		    	</div>
+		  	</div>
+		</div>
+	</div>
+
+	<!-- Jquery -->
+	<script src="lib/jquery/jquery-3.4.1.min.js"></script>
+
+	<!-- PopperJS -->
+	<script src="lib/popperjs/popper.min.js"></script>
+
+	<!-- Bootstrap JS -->
+	<script src="lib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+
+	<!-- MDBootstrap JS -->
+	<script src="lib/MDBootstrap/js/mdb.min.js"></script>
+
+	<!-- MDBootstrap Datatables JS -->
+	<script src="lib/MDBootstrap/js/addons/datatables.min.js"></script>
+
+	<!-- Popover for take and leave buttons -->
+	<script src="js/popoverSetup.js"></script>
+
+	<!-- Load datatable on control table -->
+	<script src="js/controlTableSetup.js"></script>
+
+
+	<!-- The script for the website -->
+	<script src="js/main.js"></script>
+
+</body>
+</html>
