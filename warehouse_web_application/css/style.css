@@ -1,0 +1,216 @@
+@font-face {
+	font-family: "Merriweather";
+	src: url("../font/Merriweather/Merriweather-Regular.ttf");
+}
+
+@font-face {
+	font-family: "Montserrat";
+	src: url("../font/Montserrat/Montserrat-Light.ttf");
+}
+
+@keyframes hideStepper {
+	0% {margin-top: -85vh;}
+	15% {margin-top: -83vh;}
+	35% {margin-top: -89vh;}
+	100% {margin-top: 0vh;}
+
+}
+
+@keyframes hideStepperInverse {
+	0% {margin-top: 0vh;}
+	65% {margin-top: -89vh;}
+	85% {margin-top: -83vh;}
+	100% {margin-top: -85vh;}
+}
+
+@keyframes showStepper {
+	0% {margin-top: 80vh;}
+	65% {margin-top: -2vh;}
+	85% {margin-top: 2vh;}
+	100% {margin-top: 0vh;}
+}
+
+@keyframes showStepperInverse {
+	0% {margin-top: 0vh;}
+	15% {margin-top: 2vh;}
+	35% {margin-top: -2vh;}
+	100% {margin-top: 80vh;}
+}
+
+* {
+	font-family: "Montserrat";
+}
+
+body {
+	background-color: #EAEDED;
+}
+
+button, span, .modal-header > h5 {
+	font-family: "Merriweather";
+}
+
+#main {
+	width: 100vw;
+	height: 100vh;
+}
+
+#controlTableDiv, #steps {
+	padding: 10px;
+	height: inherit;
+	background-color: #FFFFFF;
+	height: 85vh;
+}
+
+#barcodeInput {
+	width: 100%;
+	padding: 15px 10px;
+	font-size: 1.3em;
+	text-align: center;
+}
+
+#takeOrLeave {
+	margin-top: 1vh;
+}
+
+#takeOrLeave > button {
+	cursor: pointer !important;
+	border-radius: 0;
+}
+
+.popover-body {
+	font-weight: bold;
+    color: red;
+}
+
+#steps {
+	overflow: hidden;
+}
+
+#step1 > img {
+	width: 100px;
+}
+
+#submit {
+	display: block;
+	width: 94.5%;
+	margin: 1vh auto;
+}
+
+ul {
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+}
+
+#slideDownParentDiv {
+	margin-top: -85vh;
+	overflow: hidden;
+}
+
+#controlTable_wrapper {
+	max-height: 85vh;
+	min-height: 85vh;
+}
+
+/* Button statements */
+
+.disabledButton {
+	background-color: #D6EAF8 !important;
+}
+
+.activeButton {
+	background-color: #3498DB !important;
+}
+
+#stepperLeft {
+	overflow: hidden !important;
+	max-height:62vh;
+}
+
+#stepperLeftChild {
+	margin-top: 60vh;	
+	overflow: hidden;
+	transition: opacity 2s;
+}
+
+#delete {
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+	padding: 5px 15px;
+	border: 0;
+	color: #fff;
+	background: rgb(231, 76, 60);
+	border-radius: .125rem;
+}
+
+#delete > .deleteText {
+	border-right: 1px solid #fff;
+	padding-right: 10px;
+}
+
+#delete > .deleteIcon {
+	padding-left: 8px;
+}
+
+input[type="checkbox"]{
+  width: 20px; /*Desired width*/
+  height: 20px; /*Desired height*/
+}
+
+.hideStepper {
+	animation: hideStepper 1.4s forwards;
+}
+
+.hideStepperInverse {
+	animation: hideStepperInverse 1.4s forwards;
+}
+
+.showStepper {
+	animation: showStepper 1.4s forwards;
+}
+
+.showStepperInverse {
+	animation: showStepperInverse 1.4s forwards;
+}
+
+/* Authentication modal */
+
+#identificationModalHelpImgDiv {
+	text-align: center;
+}
+
+#identificationModalHelpImg {
+	width: 50%;
+}
+
+#identificationInput {
+	width: 100%;
+	text-align: center;
+	padding: 15px;
+	font-size: 1.5em;
+	outline: 0;
+}
+
+.identificationInputSuccess {
+	border: 1.5px solid #2ECC71;
+}
+
+.identificationInputError {
+	border: 1.5px solid #E74C3C;
+}
+
+#identificationResult {
+	margin-top: 1vh;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.identificationResultSuccess {
+	color: #2ECC71;
+}
+
+.identificationResultError {
+	color: #E74C3C;
+}
+
+#identificationModal .modal-footer {
+	margin: 0 auto;
+}
